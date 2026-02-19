@@ -1,0 +1,49 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Login — Choco-Megga Ball</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+      .form{margin-top:18px;background:#fff;padding:14px;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.06)}
+      label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+      input[type=text],input[type=password],input[type=email]{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(0,0,0,0.06);margin-bottom:12px}
+      .linkRow{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+      .small{font-size:13px;color:var(--muted)}
+      a.action{color:var(--brown);font-weight:700;text-decoration:none}
+    </style>
+  </head>
+  <body>
+    <div class="phone">
+      <div class="screen">
+        <div class="hero">
+          <div class="brand">Choco‑Megga Ball</div>
+          <p class="tag">Welcome back — great to see you</p>
+        </div>
+
+        <div class="form">
+          <label for="email">Email</label>
+          <input id="email" type="email" placeholder="you@example.com">
+
+          <label for="pw">Password</label>
+          <input id="pw" type="password" placeholder="••••••••">
+
+          <button id="loginBtn" class="btn primary" style="width:100%;margin-top:6px">Log In</button>
+
+          <div class="linkRow">
+            <div class="small">New here?</div>
+            <a class="action" href="signup.html">Create account</a>
+          </div>
+        </div>
+        <script>
+          document.getElementById('loginBtn').addEventListener('click', () => {
+            localStorage.setItem('loggedIn', '1');
+            location.href = 'index.html';
+          });
+        </script>
+      </div>
+    </div>
+  </body>
+</html>

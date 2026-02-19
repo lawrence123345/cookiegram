@@ -1,0 +1,321 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <title>CookieGrams</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+    /* Show home page first - login button will be shown */
+    #mainNav { display: flex; }
+    #mainHero { display: block; }
+    #authContainer { display: none; }
+    </style>
+    </head>
+
+    <body>
+
+    <!-- ================= LOGIN & SIGNUP ================= -->
+
+    <div class="container" id="authContainer">
+
+    <!-- SIGN UP -->
+    <div id="signupBox" class="hidden">
+    <h2>Create Account</h2>
+
+    <input type="text" id="username" placeholder="Username">
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+    <input type="password" id="confirmPassword" placeholder="Confirm Password">
+
+    <button onclick="signup()">Sign Up</button>
+
+    <p class="switch" onclick="showLogin()">Already have an account? Login</p>
+    <p class="message" id="signupMsg"></p>
+    </div>
+
+    <!-- LOGIN -->
+    <div id="loginBox">
+    <h2>Login</h2>
+
+    <input type="text" id="loginUser" placeholder="Username or Email">
+    <input type="password" id="loginPass" placeholder="Password">
+
+    <button onclick="login()">Login</button>
+
+    <p class="switch" onclick="showSignup()">Don't have an account? Sign Up</p>
+    <p class="message" id="loginMsg"></p>
+    </div>
+
+    </div>
+
+    <!-- ================= HOME PAGE ================= -->
+
+    <nav id="mainNav" style="display: none;">
+    <span class="logo-text">CookieGrams</span>
+
+    <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#" onclick="openContactModal(event)">Contact</a></li>
+    <li><a href="#" onclick="openAboutModal(event)">About</a></li>
+    <li id="cartNavItem" class="hidden"><a href="#" onclick="openCartModal(event)">Cart</a></li>
+    </ul>
+
+    <button id="navLoginBtn" class="nav-login-btn" onclick="handleNavLoginBtn()">Log in</button>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <div class="hero" id="mainHero" style="display: none;">
+    <section class="hero-section">
+    <div class="hero-content">
+        <img src="https://image2url.com/r2/default/images/1771406949752-d1a6ef5e-2efe-4c20-a8bc-c00c55624b72.png" alt="Choco-Mengga Logo" class="hero-logo">
+    <button id="heroLoginBtn" class="cta-button" onclick="showLoginFromHero()">Log in</button>
+    </div>
+    </section>
+
+    <!-- WHY CHOOSE US SECTION -->
+    <section class="why-choose-us">
+    <h2><button class="card-button" onclick="openOrderModal()">Order Now</button></h2>
+    <div class="product-cards">
+    <div class="product-card">
+        <img src="https://image2url.com/r2/default/images/1771490582428-8741f100-e514-46e2-960c-b9c798a8aea8.jpg" alt="Choco-Mengga Ball" class="product-image">
+        <h3>Fruit-Flavored Cookies</h3>
+        <p>Soft, freshly baked cookies infused with delicious fruit flavors such as strawberry, mango, blueberry, and more. Each bite gives a sweet and refreshing taste that fruit lovers will enjoy.</p>
+    </div>
+    <div class="product-card">
+        <img src="https://image2url.com/r2/default/images/1771490237823-2bf58342-a40d-430a-9f83-73891941e7d2.jpg" alt="Sweet Cookies" class="product-image">
+        <h3>Pick Multiple Flavors of Your Cookies With Graham Balls</h3>
+        <p>Our cookies come with sweet and creamy graham balls made from crushed graham crackers and rich fillings, adding a soft texture and extra sweetness to your treat.</p>
+      
+    </div>
+    <div class="product-card">
+        <img src="https://image2url.com/r2/default/images/1771490424064-f3354781-2829-4444-a203-c0683f77ca90.jpg" alt="Custom Cookies" class="product-image">
+        <h3>Pick your custom cookie flavors</h3>
+        <p>Choose from a wide variety of flavors and create cookies that match your taste. Whether fruity, creamy, or classic, you can design the perfect cookie just for you.</p>
+        
+    </div>
+    </div>
+    
+    <section class="visit-us">
+    <div class="visit-content">
+    <h2>Visit Us Today</h2>
+    <p>Experience the warm aroma of freshly baked goods at our bakery. Our friendly staff is ready to serve you the finest pastries and cakes in town. Come taste the difference of quality ingredients and traditional baking methods.</p>
+    </div>
+    <div class="visit-gallery">
+    <img src="https://image2url.com/r2/default/images/1771490582428-8741f100-e514-46e2-960c-b9c798a8aea8.jpg" alt="Choco-Mengga Ball" class="gallery-img">
+    <img src="https://image2url.com/r2/default/images/1771490237823-2bf58342-a40d-430a-9f83-73891941e7d2.jpg" alt="Sweet Cookies" class="gallery-img">
+    <img src="https://image2url.com/r2/default/images/1771490424064-f3354781-2829-4444-a203-c0683f77ca90.jpg" alt="Custom Cookies" class="gallery-img">
+    </div>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="bakery-footer">
+    <p>&copy; 2026 CookieGram Bakery. All rights reserved.</p>
+    </footer>
+    </div>
+
+    <!-- ORDER MODAL (hidden by default) -->
+    <div id="orderModal" class="modal hidden">
+        <div class="modal-overlay" onclick="closeOrderModal()"></div>
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeOrderModal()">×</button>
+            <!-- PRODUCT GALLERY SECTION -->
+            <section class="product-gallery">
+                <h2>Our Products</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item-full">
+                        <img src="https://image2url.com/r2/default/images/1771426732526-4da0f6e5-2c97-4759-9d5b-1687faa41196.jpg" alt="Uberload" class="product-img">
+                        <span>Uberload</span>
+                        <span class="product-price">₱28.00</span>
+                        <button class="add-to-cart" onclick="addToCart('Uberload')">Add to Cart</button>
+                    </div>
+                    <div class="gallery-item-full">
+                        <img src="https://image2url.com/r2/default/images/1771426796523-c96bf58b-d4e4-45f5-a575-b52942514d9a.jpg" alt="mangGo" class="product-img">
+                        <span>mangGo</span>
+                         <span class="product-price">₱29.00</span>
+                        <button class="add-to-cart" onclick="addToCart('mangGo')">Add to Cart</button>
+                    </div>
+                    <div class="gallery-item-full">
+                        <img src="https://image2url.com/r2/default/images/1771426836670-febb444e-f35e-4722-8603-7ef5df1d4d45.jpg" alt="Pink lemon" class="product-img">
+                        <span>Pink lemon</span>
+                         <span class="product-price">₱19.00</span>
+                        <button class="add-to-cart" onclick="addToCart('Pink lemon')">Add to Cart</button>
+                    </div>
+                    <div class="gallery-item-full">
+                        <img src="https://image2url.com/r2/default/images/1771426900237-6a6dc199-7ddc-437a-9518-6c49e2b33b5c.jpg" alt="Blueberry bomb" class="product-img">
+                        <span>Blueberry bomb</span>
+                         <span class="product-price">₱27.00</span>
+                        <button class="add-to-cart" onclick="addToCart('Blueberry bomb')">Add to Cart</button>
+                    </div>
+                    <div class="gallery-item-full">
+                        <img src="https://image2url.com/r2/default/images/1771489477531-4171a533-6da8-49a8-856e-f3f8e15873b3.jpg" alt="Nanabites" class="product-img">
+                        <span>Nanabites</span>
+                         <span class="product-price">₱23.00</span>
+                        <button class="add-to-cart" onclick="addToCart('Nanabites')">Add to Cart</button>
+                    </div>
+                    <div class="gallery-item-full">
+                        <img src="https://image2url.com/r2/default/images/1771489753738-572bcd19-a828-4dea-97cd-d44680d3e405.jpg" alt="Strawberry rush" class="product-img">
+                        <span>Strawberry rush</span>
+                         <span class="product-price">₱26.00</span>
+                        <button class="add-to-cart" onclick="addToCart('Strawberry rush')">Add to Cart</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- CART MODAL -->
+            <div id="cartModal" class="modal hidden">
+                <div class="modal-overlay" onclick="closeCartModal()"></div>
+                <div class="modal-content">
+                    <button class="modal-close" onclick="closeCartModal()">×</button>
+                    <h2>Viewing Cart</h2>
+                    <div id="cartItems" class="cart-items">
+                        <!-- Cart items will be inserted here -->
+                    </div>
+                    <div class="cart-summary">
+                        <div class="cart-total">
+                            <span>Grand Total:</span>
+                            <span id="grandTotal">$0.00</span>
+                        </div>
+                        <button id="checkoutBtn" class="cta-button" onclick="proceedToCheckout()">Checkout</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CHECKOUT MODAL -->
+            <div id="checkoutModal" class="modal hidden">
+                <div class="modal-overlay" onclick="closeCheckoutModal()"></div>
+                <div class="modal-content">
+                    <button class="modal-close" onclick="closeCheckoutModal()">×</button>
+                    <h2>Order Information</h2>
+                    <form id="checkoutForm" onsubmit="submitOrder(event)">
+                        <div class="form-group">
+                            <label for="customerName">Name:</label>
+                            <input type="text" id="customerName" placeholder="Full Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerAddress">Address:</label>
+                            <input type="text" id="customerAddress" placeholder="Street Address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerPhone">Phone Number:</label>
+                            <input type="tel" id="customerPhone" placeholder="Phone Number" required>
+                        </div>
+                        <button type="submit" class="cta-button">Confirm Order</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- SUCCESS MODAL -->
+            <div id="successModal" class="modal hidden">
+                <div class="modal-overlay"></div>
+                <div class="modal-content success-content">
+                    <div class="success-message">
+                        <h2>Thank You!</h2>
+                        <p>Your order has been successfully placed.</p>
+                        <div class="order-id">
+                            <span>Order ID:</span>
+                            <span id="generatedOrderId">#1001</span>
+                        </div>
+                        <button class="cta-button" onclick="backToHome()">Back to Home</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTACT MODAL -->
+            <div id="contactModal" class="modal hidden">
+                <div class="modal-overlay" onclick="closeContactModal()"></div>
+                <div class="modal-content contact-content">
+                    <button class="modal-close" onclick="closeContactModal()">×</button>
+                    <div class="contact-header">
+                        <h2>Get in Touch</h2>
+                        <p class="contact-subtitle">Have questions or special requests? We'd love to hear from you!</p>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span class="contact-icon">📍</span>
+                            <div class="contact-details">
+                                <span class="contact-label">Location</span>
+                                <span class="contact-value">Navotas City</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📧</span>
+                            <div class="contact-details">
+                                <span class="contact-label">Email</span>
+                                <span class="contact-value">cookiegrams@email.com</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📱</span>
+                            <div class="contact-details">
+                                <span class="contact-label">Phone</span>
+                                <span class="contact-value">09XXXXXXXXX</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📷</span>
+                            <div class="contact-details">
+                                <span class="contact-label">Social Media</span>
+                                <span class="contact-value">@cookiegrams</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-divider"></div>
+                    <div class="contact-alternative">
+                        <h3>Alternative Contact</h3>
+                        <p>richmans05@gmail.com</p>
+                    </div>
+                    <div class="contact-branch">
+                        <h3>Main Branch</h3>
+                        <p>Sipac Almacen Navotas City</p>
+                    </div>
+                    <div class="contact-hours">
+                        <span class="hours-icon">🕐</span>
+                        <div class="hours-details">
+                            <span class="hours-label">Business Hours</span>
+                            <span class="hours-value">Monday to Saturday: 9AM – 6PM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ABOUT MODAL -->
+            <div id="aboutModal" class="modal hidden">
+                <div class="modal-overlay" onclick="closeAboutModal()"></div>
+                <div class="modal-content about-content">
+                    <button class="modal-close" onclick="closeAboutModal()">×</button>
+                    <div class="about-header">
+                        <h2>About CookieGram</h2>
+                    </div>
+                    <div class="about-description">
+                        <p>CookieGram started with a simple idea — to share happiness through freshly baked cookies. Our goal is to create delicious, high-quality treats that bring people together and make every moment a little sweeter.</p>
+                        <p>We use carefully selected ingredients, including fresh fruits like strawberries, bananas, and other seasonal fruits to add natural sweetness and flavor to our cookies. Every batch is baked daily with love, creativity, and dedication to ensure quality and freshness.</p>
+                        <p>At CookieGram, we believe that cookies are more than just desserts — they're small gifts of joy. Whether it's for celebrations, sharing with friends, or satisfying a simple craving, we're here to deliver sweetness straight to you.</p>
+                    </div>
+                    <div class="about-divider"></div>
+                    <div class="about-mission">
+                        <div class="mission-icon">🎯</div>
+                        <div class="mission-content">
+                            <h3>Mission</h3>
+                            <p>To spread happiness one cookie at a time using fresh, quality ingredients.</p>
+                        </div>
+                    </div>
+                    <div class="about-vision">
+                        <div class="vision-icon">🌟</div>
+                        <div class="vision-content">
+                            <h3>Vision</h3>
+                            <p>To become a trusted and loved cookie brand in our community known for creativity, freshness, and flavor.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Toast container -->
+                <div id="toast" class="toast hidden"></div>
+
+    <script src="script.js"></script>
+
+    </body>
+    </html>
